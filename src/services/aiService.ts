@@ -6,7 +6,8 @@ if (!GEMINI_API_KEY) {
     throw new Error('GEMINI_API_KEY environment variable is not set');
 }
 
-console.log('Using Gemini API with key:', GEMINI_API_KEY.substring(0, 10) + '...');
+console.log('🔥 NEW VERSION: Using Gemini API with key:', GEMINI_API_KEY.substring(0, 10) + '...');
+console.log('🔥 Using HTTP fetch approach instead of Google GenAI SDK');
 
 // HTTP request helper for Gemini API
 async function callGeminiAPI(model: string, payload: any) {
