@@ -288,7 +288,17 @@ export const startVideoGeneration = async (imageUrl: string, templateId: string 
     const { data: imageBytes, mimeType } = dataUrlToParts(imageUrl);
     const template = getVideoTemplate(templateId);
     
-    const url = `https://generativelanguage.googleapis.com/v1alpha/models/veo-3.0-generate-001:generateVideos?key=${GEMINI_API_KEY}`;
+    // Try different Veo 3 model names
+    const veoModels = [
+        'veo-3',
+        'veo-3-generate',
+        'veo-3-generate-001',
+        'veo-3.0-generate-001',
+        'models/veo-3'
+    ];
+    
+    const modelName = 'veo-3'; // Start with simplest name
+    const url = `https://generativelanguage.googleapis.com/v1alpha/models/${modelName}:generateVideos?key=${GEMINI_API_KEY}`;
     
     const payload = {
         prompt: template.prompt,
@@ -302,6 +312,9 @@ export const startVideoGeneration = async (imageUrl: string, templateId: string 
         }
     };
     
+    console.log('🎬 Trying URL:', url);
+    console.log('🎬 Payload:', JSON.stringify(payload, null, 2));
+    
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -310,8 +323,18 @@ export const startVideoGeneration = async (imageUrl: string, templateId: string 
         body: JSON.stringify(payload)
     });
     
+    console.log('🎬 Response status:', response.status);
+    
     if (!response.ok) {
         const errorText = await response.text();
+        console.error('❌ Video API Error:', {
+            status: response.status,
+            statusText: response.statusText,
+            url: url,
+            errorText: errorText
+        });
+        
+        // If current model fails, we could try alternatives here
         throw new Error(`Video generation API error: ${response.status} - ${errorText}`);
     }
     
