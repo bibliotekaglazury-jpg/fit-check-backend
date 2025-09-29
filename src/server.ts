@@ -23,7 +23,11 @@ const PORT = process.env.PORT || 5000;
 // Базовые middleware
 app.use(helmet()); // Безопасность
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:3000',
+    'https://fit-check-2.vercel.app',
+    'https://fit-check-2-o8cnty92e-fit-check-2s-projects.vercel.app'
+  ],
   credentials: true
 })); // CORS
 app.use(express.json({ limit: '50mb' })); // Парсинг JSON (увеличенный лимит для base64 изображений)
