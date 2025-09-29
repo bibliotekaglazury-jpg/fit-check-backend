@@ -1,0 +1,148 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model - представляет пользователя системы
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  avatar    String?  // URL аватара пользователя
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Связи с другими моделями
+  wardrobes WardrobeItem[] // Личный гардероб пользователя
+  projects  Project[]      // Проекты пользователя
+  generations Generation[] // История генераций
+
+  @@map("users")
+}
+
+// WardrobeItem model - элементы гардероба пользователя
+model WardrobeItem {
+  id       String           @id @default(cuid())
+  name     String
+  imageUrl String           // URL изображения одежды
+  category WardrobeCategory
+  color    String?
+  tags     String[]         // массив тегов для поиска
+  userId   String
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  // Связи
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectItems ProjectItem[] // Использование в проектах
+
+  @@map("wardrobe_items")
+}
+
+// Project model - проект пользователя (сессия примерки)
+model Project {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  modelImageUrl String  // URL фото модели
+  isPublic    Boolean   @default(false)
+  shareToken  String?   @unique // токен для публичной ссылки
+  userId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Связи
+  user   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items  ProjectItem[] // Примеряемые вещи в проекте
+  generations Generation[] // Все генерации для этого проекта
+
+  @@map("projects")
+}
+
+// ProjectItem model - связь проекта с элементами гардероба
+model ProjectItem {
+  id             String @id @default(cuid())
+  projectId      String
+  wardrobeItemId String
+  order          Int    // порядок слоев
+  createdAt      DateTime @default(now())
+
+  // Связи
+  project      Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  wardrobeItem WardrobeItem @relation(fields: [wardrobeItemId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, wardrobeItemId]) // уникальная пара проект-вещь
+  @@map("project_items")
+}
+
+// Generation model - результат генерации изображения
+model Generation {
+  id            String          @id @default(cuid())
+  type          GenerationType  // тип генерации
+  inputImageUrl String         // исходное изображение
+  outputImageUrl String        // результат генерации
+  prompt        String?        // промпт для генерации (для фонов)
+  pose          String?        // инструкция позы
+  metadata      Json?          // дополнительные метаданные
+  status        GenerationStatus @default(PENDING)
+  userId        String
+  projectId     String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  // Связи
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  @@map("generations")
+}
+
+// Background model - предустановленные фоны
+model Background {
+  id          String @id @default(cuid())
+  name        String
+  description String?
+  imageUrl    String
+  category    String // indoor, outdoor, studio, etc.
+  tags        String[]
+  isActive    Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("backgrounds")
+}
+
+// Enums - перечисления для типов данных
+enum WardrobeCategory {
+  TOP
+  BOTTOM
+  OUTERWEAR
+  DRESS
+  SHOES
+  ACCESSORIES
+}
+
+enum GenerationType {
+  MODEL_EXTRACTION    // извлечение модели из фото
+  VIRTUAL_TRYON      // виртуальная примерочная
+  POSE_CHANGE        // смена позы
+  BACKGROUND_CHANGE  // смена фона
+  VIDEO_GENERATION   // генерация видео
+  CLOSEUP           // крупный план
+  CAROUSEL          // карусель для Instagram
+}
+
+enum GenerationStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
