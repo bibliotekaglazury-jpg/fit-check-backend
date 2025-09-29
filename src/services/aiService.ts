@@ -288,7 +288,7 @@ export const startVideoGeneration = async (imageUrl: string, templateId: string 
     const { data: imageBytes, mimeType } = dataUrlToParts(imageUrl);
     const template = getVideoTemplate(templateId);
     
-    const url = `${GEMINI_API_URL}/models/veo-3.0-generate-001:generateVideos?key=${GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1alpha/models/veo-3.0-generate-001:generateVideos?key=${GEMINI_API_KEY}`;
     
     const payload = {
         prompt: template.prompt,
@@ -320,7 +320,7 @@ export const startVideoGeneration = async (imageUrl: string, templateId: string 
 };
 
 export const checkVideoGenerationStatus = async (operation: any): Promise<any> => {
-    const url = `${GEMINI_API_URL}/operations/${operation.name}?key=${GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1alpha/operations/${operation.name}?key=${GEMINI_API_KEY}`;
     
     const response = await fetch(url, {
         method: 'GET',
