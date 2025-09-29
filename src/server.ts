@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 // Импорты маршрутов
 import authRoutes from './routes/authRoutes';
 import wardrobeRoutes from './routes/wardrobeRoutes';
+import aiRoutes from './routes/aiRoutes';
 
 // Импорты утилит
 import { connectDatabase, disconnectDatabase } from './utils/database';
@@ -48,6 +49,7 @@ app.get('/health', (req, res) => {
 // API роуты
 app.use('/api/auth', authRoutes);
 app.use('/api/wardrobe', wardrobeRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Корневой маршрут
 app.get('/', (req, res) => {
@@ -59,6 +61,7 @@ app.get('/', (req, res) => {
     endpoints: {
       auth: '/api/auth',
       wardrobe: '/api/wardrobe',
+      ai: '/api/ai',
       health: '/health'
     }
   });
