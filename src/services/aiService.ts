@@ -231,15 +231,10 @@ export const startVideoGeneration = async (imageUrl: string, templateId: string 
     const operation = await ai.models.generateVideos({
         model: videoModel,
         prompt: template.prompt,
-        image: { imageBytes: Buffer.from(imageBytes, 'base64'), mimeType },
+        image: { imageBytes: imageBytes, mimeType },
         config: { 
-            numberOfVideos: 1,
-            videoLength: template.duration,
-            aspectRatio: '9:16', // Vertical Instagram format
-            motionStrength: template.motionStrength,
-            quality: 'premium',
-            cropMode: 'smart',
-            scaleMode: 'fill'
+            numberOfVideos: 1
+            // Remove all unsupported fields temporarily
         }
     });
     

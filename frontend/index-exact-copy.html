@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AI Watermark Remover - Remove Watermark from photo with AI</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Our free AI watermark remover can help you remove all kinds of watermarks from images for free online, Including but not limited to text, camera date stamps, logos, etc." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Free AI Watermark Remover Online" />
+    <meta property="og:description" content="Effortlessly Perfect Your Images with Free AI Watermark Remover. Remove annoying watermarks without image corruption in one click." />
+    
+    <link rel="canonical" href="https://watermarkremover.ai/" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4621ad;
+            --secondary-color: #313ed0;
+            --accent-color: #973bfc;
+            --text-dark: #1e1e2d;
+            --text-gray: #7e8299;
+            --border-color: #eff2f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation */
+        .app-header {
+            background: white;
+            box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .app-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .anime-header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 50%, var(--accent-color) 100%);
+            color: white;
+            padding: 80px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .anime-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            line-height: 2;
+            margin: 2rem 0;
+            opacity: 0.95;
+        }
+
+        .hero-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            max-width: 75%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        /* Playground Section */
+        .playground-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .anime-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .anime-section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .anime-section-header hr {
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border: none;
+            margin: 2rem auto;
+        }
+
+        .anime-section-header .lead {
+            font-size: 1.125rem;
+            color: var(--text-gray);
+            margin-bottom: 0;
+        }
+
+        /* Upload Area */
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 3rem;
+            border: 2px dashed var(--border-color);
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-container:hover,
+        .upload-container.dragover {
+            border-color: var(--primary-color);
+            background: rgba(70, 33, 173, 0.02);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 80px rgba(70, 33, 173, 0.15);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .upload-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 1rem 0;
+            transition: all 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .supported-formats {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* Loading */
+        .loading-section {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+        }
+
+        /* Result Section */
+        .result-section {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .result-images {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .result-image-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .result-image-container h4 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .result-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .download-section {
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #047857;
+            transform: translateY(-2px);
+        }
+
+        .new-upload-btn {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .new-upload-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .feature-row {
+            margin: 5rem 0;
+        }
+
+        .feature-content h4 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .feature-content p {
+            font-size: 1.125rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        .feature-content a {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .feature-content a:hover {
+            color: var(--secondary-color);
+        }
+
+        .feature-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* Advantages Section */
+        .advantages-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .advantage-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .advantage-card h5 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 50%, var(--accent-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .final-cta-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .final-cta-btn:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: #7e8299;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h6 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #7e8299;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d2d41;
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        /* Error Message */
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #dc2626;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .upload-container {
+                margin: 0 1rem;
+                padding: 2rem;
+            }
+            
+            .result-images {
+                flex-direction: column;
+            }
+            
+            .result-image-container {
+                min-width: unset;
+                max-width: unset;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-message {
+            background: #f0fdf4;
+            color: #15803d;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #15803d;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <div id="kt_app_header" class="app-header">
+        <div class="app-container container-xxl d-flex align-items-stretch justify-content-between">
+            <div class="d-flex align-items-center flex-grow-1 flex-xl-grow-0 me-xl-10">
+                <a href="/">
+                    <img alt="(Free, No Sign Up) AI Face Swap" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='139' height='40' viewBox='0 0 139 40'><rect width='139' height='40' rx='8' fill='%234621ad'/><text x='70' y='28' text-anchor='middle' fill='white' font-family='Inter, sans-serif' font-weight='700' font-size='14'>🎨 WatermarkRemover</text></svg>" class="h-35px h-sm-40px w-auto" width="139" height="40" />
+                </a>
+            </div>
+            
+            <nav class="navbar navbar-expand-xl">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Face Swap</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/video-face-swap-ai/">Video Face Swap</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#feature">Face Swappers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#advantages">AI Video</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#final-cta">AI Image</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tools">AI Tools</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="app-wrapper flex-column flex-row-fluid">
+        <div class="app-main flex-column flex-row-fluid">
+            <div class="d-flex flex-column flex-column-fluid">
+                <div class="app-content flex-column-fluid pt-0">
+                    
+                    <!-- Hero Section -->
+                    <header class="anime-header">
+                        <div class="anime-container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <h1 class="hero-title">
+                                        Free AI Watermark Remover Online
+                                    </h1>
+                                    <p class="hero-subtitle">
+                                        Effortlessly Perfect Your Images with Free AI Watermark Remover. Remove annoying watermarks without image corruption in one click.<br>
+                                        —Fast, Simple, and Effective! No sign-up required.
+                                    </p>
+                                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start my-5">
+                                        <a class="hero-btn" href="#app-playground">remove watermark now</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 text-center p-4">
+                                    <img class="hero-image" width="400" height="400" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' rx='15' fill='%23f8f9fa'/><circle cx='200' cy='150' r='50' fill='%234621ad'/><rect x='150' y='250' width='100' height='20' rx='10' fill='%23e5e7eb'/><rect x='120' y='290' width='160' height='20' rx='10' fill='%23e5e7eb'/><text x='200' y='350' text-anchor='middle' fill='%234621ad' font-size='16' font-weight='600'>AI Watermark Remover</text></svg>" alt="AI watermark remover" />
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Playground Section -->
+                    <section class="playground-section" id="app-playground">
+                        <header class="anime-section-header">
+                            <h2>Remover Watermark in One Click</h2>
+                            <hr />
+                            <p class="lead">Destroy annoying watermarks with AI. Remove watermarks from your photos in a second👇👇👇</p>
+                        </header>
+                        
+                        <div class="anime-container">
+                            <!-- Upload Area -->
+                            <div class="upload-container" onclick="document.getElementById('fileInput').click()">
+                                <div class="upload-icon">📤</div>
+                                <div class="upload-text">
+                                    For more precise results, use edit mode.
+                                </div>
+                                <button class="upload-btn">drag an image (≤20M)</button>
+                                <div class="supported-formats">support formats: png/jpeg/webp/bmp</div>
+                                <input type="file" id="fileInput" class="file-input" accept="image/png,image/jpeg,image/webp,image/bmp">
+                            </div>
+
+                            <!-- Loading Section -->
+                            <div id="loadingSection" class="loading-section">
+                                <div class="spinner"></div>
+                                <div class="loading-text">AI is processing your image...<br>Please wait while we remove the watermark</div>
+                            </div>
+
+                            <!-- Error Message -->
+                            <div id="errorMessage" class="error-message"></div>
+                            
+                            <!-- Success Message -->
+                            <div id="successMessage" class="success-message"></div>
+
+                            <!-- Result Section -->
+                            <div id="resultSection" class="result-section">
+                                <h3>🎉 Watermark Successfully Removed!</h3>
+                                <div class="result-images">
+                                    <div class="result-image-container">
+                                        <h4>Original Image</h4>
+                                        <img id="originalImage" class="result-image" alt="Original image">
+                                    </div>
+                                    <div class="result-image-container">
+                                        <h4>Result</h4>
+                                        <img id="processedImage" class="result-image" alt="Processed image">
+                                    </div>
+                                </div>
+                                <div class="download-section">
+                                    <button id="downloadBtn" class="download-btn">📥 Download High Quality Image</button>
+                                    <button class="new-upload-btn" onclick="resetUpload()">🔄 Upload Another Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Features Section -->
+                    <section class="features-section" id="feature">
+                        <header class="anime-section-header">
+                            <small style="color: #7e8299; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">FEATURE</small>
+                            <h2>What are the Features of Our AI Watermark Remover?</h2>
+                        </header>
+                        
+                        <div class="anime-container">
+                            <!-- Feature 1 -->
+                            <div class="row feature-row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="feature-content">
+                                        <h4>Support removing watermark of different shapes</h4>
+                                        <p>Our AI watermark remover is adept at handling watermarks of various shapes and sizes, whether they are simple logos or complex patterns that span large areas of the image. This flexibility is key to providing a versatile tool that can adapt to a wide range of scenarios. By intelligently analyzing the surrounding pixels, the remover efficiently eliminates unwanted watermarks, restoring the image to its pristine state without compromising the original aesthetics. This capability makes it an ideal choice for professionals and hobbyists alike who need to clean up their photos while maintaining high visual quality.</p>
+                                        <br>
+                                        <a href="#app-playground">Try AI Watermark Remover for Free >></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 order-md-first">
+                                    <img class="feature-image" width="264" height="264" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='264' height='264' viewBox='0 0 264 264'><rect width='264' height='264' rx='15' fill='%23f8f9fa'/><rect x='50' y='50' width='164' height='164' rx='10' fill='%234621ad' opacity='0.1'/><circle cx='132' cy='100' r='20' fill='%234621ad'/><rect x='90' y='140' width='84' height='8' rx='4' fill='%234621ad' opacity='0.6'/><rect x='70' y='160' width='124' height='8' rx='4' fill='%234621ad' opacity='0.4'/><text x='132' y='200' text-anchor='middle' fill='%234621ad' font-size='12' font-weight='600'>Different Shapes</text></svg>" alt="remove watermark of different shapes" />
+                                </div>
+                            </div>
+
+                            <!-- Feature 2 -->
+                            <div class="row feature-row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="feature-content">
+                                        <h4>Automatic Mode: one-click watermark remover</h4>
+                                        <p>The Automatic Mode in our AI watermark remover offers a one-click solution that simplifies the watermark removal process significantly. By utilizing this mode, users can effortlessly erase watermarks with just a single click. This feature is especially designed for those who seek a quick and efficient way to clean up their images without getting involved in detailed settings or adjustments. The tool automatically detects the watermark, applies the optimal removal technique, and preserves the original quality of the image, making it an excellent choice for rapid edits where time and ease are of the essence.</p>
+                                        <br>
+                                        <a href="#app-playground">Experience the Automatic Mode of AI Watermark Remover >></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <img class="feature-image" width="264" height="264" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='264' height='264' viewBox='0 0 264 264'><rect width='264' height='264' rx='15' fill='%23f8f9fa'/><rect x='50' y='50' width='164' height='164' rx='10' fill='%2359c9a5' opacity='0.1'/><circle cx='132' cy='132' r='40' fill='%2359c9a5'/><text x='132' y='140' text-anchor='middle' fill='white' font-size='20' font-weight='700'>1</text><text x='132' y='200' text-anchor='middle' fill='%2359c9a5' font-size='12' font-weight='600'>One Click</text></svg>" alt="one-click watermark remover" />
+                                </div>
+                            </div>
+
+                            <!-- Feature 3 -->
+                            <div class="row feature-row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="feature-content">
+                                        <h4>Erase Mode: Manually select the area and then remove the watermark</h4>
+                                        <p>The Erase Mode in our AI watermark remover allows users to manually select the area where the watermark is located, providing precise control over the removal process. This mode is ideal for complex situations where the watermark is intertwined with important image details or spans irregular shapes that require careful attention. Once the area is selected, our tool applies targeted removal techniques that focus solely on the defined region, ensuring that the rest of the image remains untouched and preserving its original integrity. This manual selection capability is perfect for users who demand exactness in their edits, allowing them to achieve clean, seamless results even in the most challenging scenarios.</p>
+                                        <br>
+                                        <a href="#app-playground">Precisely Remove Watermarks from Images >></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 order-md-first">
+                                    <img class="feature-image" width="264" height="264" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='264' height='264' viewBox='0 0 264 264'><rect width='264' height='264' rx='15' fill='%23f8f9fa'/><rect x='50' y='50' width='164' height='164' rx='10' fill='%23f59e0b' opacity='0.1'/><rect x='70' y='70' width='124' height='124' rx='8' fill='none' stroke='%23f59e0b' stroke-width='2' stroke-dasharray='5,5'/><circle cx='90' cy='90' r='6' fill='%23f59e0b'/><circle cx='174' cy='90' r='6' fill='%23f59e0b'/><circle cx='90' cy='174' r='6' fill='%23f59e0b'/><circle cx='174' cy='174' r='6' fill='%23f59e0b'/><text x='132' y='210' text-anchor='middle' fill='%23f59e0b' font-size='12' font-weight='600'>Manual Selection</text></svg>" alt="Select area and remove watermark" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Advantages Section -->
+                    <section class="advantages-section" id="advantages">
+                        <header class="anime-section-header">
+                            <h2>Advantages of AI Watermark Remover</h2>
+                            <p class="lead">Our AI-powered watermark remover has 6 unique advantages.</p>
+                        </header>
+                        
+                        <div class="anime-container">
+                            <div class="advantages-grid">
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">🎯</div>
+                                    <h5>Support two modes</h5>
+                                    <p>Our AI watermark remover features two modes: an automatic mode for quick removals and a manual mode for precision. This flexibility makes it suitable for both quick fixes and detailed edits.</p>
+                                </div>
+                                
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">⚡</div>
+                                    <h5>Easy step</h5>
+                                    <p>Designed for ease of use, our tool allows users to remove watermarks with just a few clicks, offering a user-friendly interface that simplifies the editing process.</p>
+                                </div>
+                                
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">⭐</div>
+                                    <h5>High-quality results</h5>
+                                    <p>Utilizing advanced algorithms, our tool removes watermarks while maintaining high image quality, ensuring clean and professional-grade results.</p>
+                                </div>
+                                
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">🚀</div>
+                                    <h5>Fast generation speed</h5>
+                                    <p>Optimized for speed, our AI watermark remover processes images quickly, enabling users to handle large batches of photos efficiently.</p>
+                                </div>
+                                
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">💎</div>
+                                    <h5>Totally Free</h5>
+                                    <p>This tool is completely free, providing a cost-effective solution for both individuals and businesses looking to enhance their images without financial constraints.</p>
+                                </div>
+                                
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">🔒</div>
+                                    <h5>100% Private Safe</h5>
+                                    <p>We ensure that all image processing is done securely, keeping your data safe and private with no risk of it being stored or sent externally.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Final CTA Section -->
+                    <section class="final-cta" id="final-cta">
+                        <div class="anime-container">
+                            <h2>Remove any Watermark in One Click</h2>
+                            <p>Our free AI watermark remover can help you remove all kinds of watermarks from images for free online, Including but not limited to text, camera date stamps, logos, etc.</p>
+                            <a href="#app-playground" class="final-cta-btn">Get started for free now</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="tools">
+        <div class="anime-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h6>Product</h6>
+                    <ul>
+                        <li><a href="/">Face Swap</a></li>
+                        <li><a href="/multiple-face-swap">Multiple Face Swap</a></li>
+                        <li><a href="/video-face-swap-ai/">Video Face Swap</a></li>
+                        <li><a href="/gif-face-swap">Gif Face Swap</a></li>
+                        <li><a href="/batch-face-swap">Batch Face Swap</a></li>
+                        <li><a href="/ai-attractiveness-test">AI Attractiveness Test</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h6>Information</h6>
+                    <ul>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/ai-solution">AI Solution</a></li>
+                        <li><a href="/features">Features</a></li>
+                        <li><a href="/api-service">API Service</a></li>
+                        <li><a href="/contact-us">Contact Us</a></li>
+                        <li><a href="/refund-policy">Refund Policy</a></li>
+                        <li><a href="/content-policy">Content Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h6>Contact</h6>
+                    <p>Free yourself with AI face swap. Enjoy endless creative fun.</p>
+                    <p>Email: service@watermarkremover.ai</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; WATERMARK REMOVER AI 2025, All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Firebase and JavaScript -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-functions.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoPA_WaSKW18QGvCnNNvXpL_G_kRtk46U",
+            authDomain: "ai-watermark-backend-2024.firebaseapp.com",
+            projectId: "ai-watermark-backend-2024",
+            storageBucket: "ai-watermark-backend-2024.firebasestorage.app",
+            messagingSenderId: "550066139623",
+            appId: "1:550066139623:web:fa14b1be84dbe8a39f4d42"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const functions = getFunctions(app);
+
+        // Global variables
+        let originalImageData = null;
+
+        // DOM elements
+        const fileInput = document.getElementById('fileInput');
+        const uploadContainer = document.querySelector('.upload-container');
+        const loadingSection = document.getElementById('loadingSection');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const resultSection = document.getElementById('resultSection');
+        const originalImage = document.getElementById('originalImage');
+        const processedImage = document.getElementById('processedImage');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // File upload handling
+        fileInput.addEventListener('change', handleFileUpload);
+
+        // Drag and drop functionality
+        uploadContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadContainer.classList.add('dragover');
+        });
+
+        uploadContainer.addEventListener('dragleave', () => {
+            uploadContainer.classList.remove('dragover');
+        });
+
+        uploadContainer.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadContainer.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                handleFileUpload({ target: { files } });
+            }
+        });
+
+        // Handle file upload
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            const validTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/bmp'];
+            if (!validTypes.includes(file.type)) {
+                showError('Please upload an image in PNG, JPEG, WEBP, or BMP format.');
+                return;
+            }
+
+            // Validate file size (20MB limit to match original)
+            if (file.size > 20 * 1024 * 1024) {
+                showError('File size must be less than 20MB.');
+                return;
+            }
+
+            // Show loading
+            showLoading(true);
+            hideError();
+            hideSuccess();
+            hideResult();
+
+            try {
+                // Convert to base64
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const dataUrl = e.target.result;
+                    originalImageData = dataUrl;
+                    const base64Data = dataUrl.split(',')[1];
+                    
+                    await processWithAI(base64Data, file.type);
+                };
+                reader.readAsDataURL(file);
+
+            } catch (error) {
+                showError('Failed to read the file. Please try again.');
+                showLoading(false);
+            }
+        }
+
+        // Process with AI
+        async function processWithAI(base64Data, mimeType) {
+            try {
+                const removeWatermarkCallable = httpsCallable(functions, 'removeWatermarkWithAI');
+                const response = await removeWatermarkCallable({
+                    parts: [
+                        { inlineData: { data: base64Data, mimeType: mimeType } },
+                        { text: 'Remove all watermarks, logos, text overlays, watermark patterns, and unwanted elements from this image. Reconstruct the background naturally while maintaining high image quality. Focus on completely eliminating any visible watermarks.' }
+                    ]
+                });
+
+                const { data, mimeType: resultMimeType, remainingCredits } = response.data;
+                const resultImageUrl = `data:${resultMimeType};base64,${data}`;
+                
+                showResult(originalImageData, resultImageUrl);
+                
+                // Show remaining credits if available
+                if (remainingCredits !== undefined && remainingCredits >= 0) {
+                    showSuccess(`Watermark removed successfully! You have ${remainingCredits} free attempts remaining.`);
+                }
+                
+            } catch (error) {
+                console.error('Processing error:', error);
+                let message = 'Failed to process the image. Please try again.';
+                
+                if (error.code === 'functions/permission-denied') {
+                    message = '⚠️ You have used all your free attempts today. Please try again tomorrow or upgrade to Pro!';
+                } else if (error.message && error.message.includes('AI не смог')) {
+                    message = 'The AI could not process this image. Please try with a different image that has clear watermarks.';
+                } else if (error.message) {
+                    message = error.message;
+                }
+                
+                showError(message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Show loading state
+        function showLoading(show) {
+            loadingSection.style.display = show ? 'block' : 'none';
+            uploadContainer.style.display = show ? 'none' : 'block';
+        }
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            errorMessage.classList.add('fade-in');
+        }
+
+        // Hide error message
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            successMessage.classList.add('fade-in');
+        }
+
+        // Hide success message
+        function hideSuccess() {
+            successMessage.style.display = 'none';
+        }
+
+        // Show result
+        function showResult(originalUrl, resultUrl) {
+            originalImage.src = originalUrl;
+            processedImage.src = resultUrl;
+            resultSection.style.display = 'block';
+            resultSection.classList.add('fade-in');
+            
+            // Setup download functionality
+            downloadBtn.onclick = function() {
+                const link = document.createElement('a');
+                link.href = resultUrl;
+                link.download = 'watermark-removed.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+            
+            // Scroll to result
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Hide result
+        function hideResult() {
+            resultSection.style.display = 'none';
+        }
+
+        // Reset upload (global function)
+        window.resetUpload = function() {
+            fileInput.value = '';
+            hideResult();
+            hideError();
+            hideSuccess();
+            showLoading(false);
+            originalImageData = null;
+            
+            // Scroll back to upload
+            document.getElementById('app-playground').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бесплатное удаление водяных знаков с помощью ИИ онлайн</title>
+    <meta name="description" content="Удалите водяные знаки с изображений бесплатно с помощью нашего передового ИИ. Быстро, точно и без потери качества. Попробуйте прямо сейчас!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://watermarkremover.ai/">
+    <meta property="og:title" content="Бесплатное удаление водяных знаков с помощью ИИ">
+    <meta property="og:description" content="Удалите водяные знаки с изображений бесплатно с помощью нашего передового ИИ">
+    <meta property="og:image" content="https://watermarkremover.ai/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://watermarkremover.ai/">
+    <meta property="twitter:title" content="Бесплатное удаление водяных знаков с помощью ИИ">
+    <meta property="twitter:description" content="Удалите водяные знаки с изображений бесплатно с помощью нашего передового ИИ">
+    <meta property="twitter:image" content="https://watermarkremover.ai/og-image.jpg">
+
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #2563eb;
+        }
+
+        .get-started-btn {
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .get-started-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Hero Section - exactly like aifaceswap.io */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .hero-feature .icon {
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* Upload Section - exact copy of aifaceswap.io style */
+        .upload-section {
+            max-width: 800px;
+            margin: -100px auto 4rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 3rem;
+            position: relative;
+            z-index: 100;
+        }
+
+        .upload-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .upload-header h2 {
+            font-size: 1.8rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-header p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        .upload-area {
+            border: 3px dashed #d1d5db;
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: #f9fafb;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: #2563eb;
+            background: #eff6ff;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+
+        .upload-button {
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 1rem 0;
+        }
+
+        .upload-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .supported-formats {
+            margin-top: 1rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Loading spinner */
+        .loading-section {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        /* Result section */
+        .result-section {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .result-container {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .image-container h3 {
+            margin-bottom: 1rem;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        .result-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .download-section {
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #059669, #10b981);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+        }
+
+        .new-image-btn {
+            background: transparent;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .new-image-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* How it works section - exact copy */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: #f9fafb;
+        }
+
+        .how-it-works-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .how-it-works p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .step p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Features section */
+        .features {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .features p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .feature p {
+            color: #6b7280;
+            text-align: left;
+            margin: 0;
+        }
+
+        /* FAQ section */
+        .faq {
+            padding: 5rem 2rem;
+            background: #f9fafb;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq h2 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #6b7280;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: #d1d5db;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        /* Error message */
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #dc2626;
+            display: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .upload-section {
+                margin: -50px 1rem 2rem;
+                padding: 2rem;
+            }
+
+            .result-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .image-container {
+                min-width: unset;
+            }
+
+            .download-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .download-btn, .new-image-btn {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">🎨</div>
+                WatermarkRemover.AI
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#how-it-works">Как это работает</a></li>
+                <li><a href="#features">Функции</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#pricing">Цены</a></li>
+            </ul>
+            <a href="#upload" class="get-started-btn">Начать бесплатно</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Удаление водяных знаков с помощью ИИ</h1>
+            <p>Удалите любые водяные знаки с ваших изображений за секунды с помощью нашего передового искусственного интеллекта. Быстро, точно и совершенно бесплатно.</p>
+            
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="icon">✓</div>
+                    <span>100% Бесплатно</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="icon">⚡</div>
+                    <span>Мгновенные результаты</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="icon">🔒</div>
+                    <span>Безопасно и приватно</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="icon">🎯</div>
+                    <span>Высокая точность</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section" id="upload">
+        <div class="upload-header">
+            <h2>Загрузите ваше изображение</h2>
+            <p>Выберите изображение с водяным знаком, и наш ИИ удалит его за несколько секунд</p>
+        </div>
+
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📤</div>
+            <div class="upload-text">Перетащите изображение сюда или нажмите для выбора</div>
+            <button class="upload-button">Выбрать изображение</button>
+            <div class="supported-formats">Поддерживаемые форматы: JPG, PNG, WEBP • Максимальный размер: 10MB</div>
+            <input type="file" id="fileInput" class="file-input" accept="image/jpeg,image/png,image/webp">
+        </div>
+
+        <div id="loadingSection" class="loading-section">
+            <div class="spinner"></div>
+            <div class="loading-text">ИИ обрабатывает ваше изображение...<br>Пожалуйста, подождите</div>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <div id="resultSection" class="result-section">
+            <h3>🎉 Водяной знак успешно удален!</h3>
+            <div class="result-container">
+                <div class="image-container">
+                    <h3>Исходное изображение</h3>
+                    <img id="originalImage" class="result-image" alt="Исходное изображение">
+                </div>
+                <div class="image-container">
+                    <h3>Результат</h3>
+                    <img id="processedImage" class="result-image" alt="Обработанное изображение">
+                </div>
+            </div>
+            <div class="download-section">
+                <button id="downloadBtn" class="download-btn">📥 Скачать результат</button>
+                <button class="new-image-btn" onclick="resetUpload()">🔄 Загрузить новое изображение</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="how-it-works-container">
+            <h2>Как это работает</h2>
+            <p>Наша продвинутая технология искусственного интеллекта делает удаление водяных знаков простым и эффективным</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Загрузите изображение</h3>
+                    <p>Просто перетащите ваше изображение с водяным знаком в область загрузки или нажмите для выбора файла</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>ИИ анализирует</h3>
+                    <p>Наш искусственный интеллект автоматически определяет водяные знаки и анализирует окружающие области</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Скачайте результат</h3>
+                    <p>Получите ваше изображение без водяного знака в высоком качестве за несколько секунд</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2>Почему выбирают нас</h2>
+            <p>Передовые возможности для идеального удаления водяных знаков</p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>ИИ последнего поколения</h3>
+                    <p>Используем самые современные алгоритмы машинного обучения для точного определения и удаления водяных знаков любой сложности</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Молниеносная скорость</h3>
+                    <p>Обработка изображений занимает всего несколько секунд благодаря оптимизированным алгоритмам и мощной инфраструктуре</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Высочайшая точность</h3>
+                    <p>Наш ИИ сохраняет качество изображения и естественно восстанавливает фон под удаленным водяным знаком</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Полная приватность</h3>
+                    <p>Все изображения обрабатываются локально и автоматически удаляются через 24 часа. Ваша конфиденциальность гарантирована</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Работает везде</h3>
+                    <p>Используйте на любом устройстве - компьютере, планшете или телефоне. Никаких загрузок программ не требуется</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💎</div>
+                    <h3>Бесплатно навсегда</h3>
+                    <p>Основные функции доступны бесплатно. Без скрытых платежей, без подписок, без ограничений по времени</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <h2>Часто задаваемые вопросы</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    Какие типы водяных знаков может удалить ваш ИИ?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Наш ИИ может удалять различные типы водяных знаков: текстовые логотипы, графические элементы, полупрозрачные наложения, повторяющиеся паттерны и даже сложные многослойные водяные знаки.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Потеряется ли качество изображения после удаления водяного знака?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Нет! Наш продвинутый ИИ сохраняет исходное качество изображения и естественно восстанавливает области под водяным знаком, используя контекстную информацию из окружающих пикселей.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Сколько времени занимает обработка?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Обычно обработка занимает от 5 до 30 секунд в зависимости от размера и сложности изображения. Большинство изображений обрабатывается менее чем за 15 секунд.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Безопасно ли загружать мои изображения?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Абсолютно! Все изображения обрабатываются в безопасной среде, передаются по зашифрованному соединению и автоматически удаляются с наших серверов через 24 часа.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Какие форматы изображений поддерживаются?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Мы поддерживаем самые популярные форматы: JPG, PNG и WEBP. Максимальный размер файла - 10MB для обеспечения быстрой обработки.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Есть ли ограничения на количество обработок?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    В бесплатной версии доступно 3 обработки в день. Для неограниченного доступа доступна PRO версия с расширенными возможностями.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="/privacy">Политика конфиденциальности</a>
+                <a href="/terms">Условия использования</a>
+                <a href="/contact">Контакты</a>
+                <a href="/about">О нас</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WatermarkRemover.AI. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase and JavaScript -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-functions.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoPA_WaSKW18QGvCnNNvXpL_G_kRtk46U",
+            authDomain: "ai-watermark-backend-2024.firebaseapp.com",
+            projectId: "ai-watermark-backend-2024",
+            storageBucket: "ai-watermark-backend-2024.firebasestorage.app",
+            messagingSenderId: "550066139623",
+            appId: "1:550066139623:web:fa14b1be84dbe8a39f4d42"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const functions = getFunctions(app);
+
+        // Global variables
+        let originalImageData = null;
+
+        // DOM elements
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.querySelector('.upload-area');
+        const loadingSection = document.getElementById('loadingSection');
+        const errorMessage = document.getElementById('errorMessage');
+        const resultSection = document.getElementById('resultSection');
+        const originalImage = document.getElementById('originalImage');
+        const processedImage = document.getElementById('processedImage');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // File upload handling
+        fileInput.addEventListener('change', handleFileUpload);
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                handleFileUpload({ target: { files } });
+            }
+        });
+
+        // Handle file upload
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+            if (!validTypes.includes(file.type)) {
+                showError('Пожалуйста, загрузите изображение в формате JPG, PNG или WEBP.');
+                return;
+            }
+
+            // Validate file size (10MB limit)
+            if (file.size > 10 * 1024 * 1024) {
+                showError('Размер файла не должен превышать 10MB.');
+                return;
+            }
+
+            // Show loading
+            showLoading(true);
+            hideError();
+            hideResult();
+
+            try {
+                // Convert to base64
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const dataUrl = e.target.result;
+                    originalImageData = dataUrl;
+                    const base64Data = dataUrl.split(',')[1];
+                    
+                    await processWithAI(base64Data, file.type);
+                };
+                reader.readAsDataURL(file);
+
+            } catch (error) {
+                showError('Ошибка при чтении файла. Пожалуйста, попробуйте снова.');
+                showLoading(false);
+            }
+        }
+
+        // Process with AI
+        async function processWithAI(base64Data, mimeType) {
+            try {
+                const removeWatermarkCallable = httpsCallable(functions, 'removeWatermarkWithAI');
+                const response = await removeWatermarkCallable({
+                    parts: [
+                        { inlineData: { data: base64Data, mimeType: mimeType } },
+                        { text: 'Remove all watermarks, logos, text overlays, and unwanted elements from this image. Reconstruct the background naturally while maintaining high image quality.' }
+                    ]
+                });
+
+                const { data, mimeType: resultMimeType, remainingCredits } = response.data;
+                const resultImageUrl = `data:${resultMimeType};base64,${data}`;
+                
+                showResult(originalImageData, resultImageUrl);
+                
+                // Show remaining credits if available
+                if (remainingCredits !== undefined && remainingCredits >= 0) {
+                    console.log(`Оставшихся бесплатных попыток: ${remainingCredits}`);
+                }
+                
+            } catch (error) {
+                console.error('Ошибка обработки:', error);
+                let message = 'Ошибка при обработке изображения. Пожалуйста, попробуйте снова.';
+                
+                if (error.code === 'functions/permission-denied') {
+                    message = '⚠️ Вы использовали все бесплатные попытки на сегодня. Попробуйте завтра или обновитесь до PRO!';
+                } else if (error.message && error.message.includes('AI не смог')) {
+                    message = 'ИИ не смог обработать это изображение. Попробуйте с другим изображением, где водяные знаки более заметны.';
+                } else if (error.message) {
+                    message = error.message;
+                }
+                
+                showError(message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Show loading state
+        function showLoading(show) {
+            loadingSection.style.display = show ? 'block' : 'none';
+            uploadArea.style.display = show ? 'none' : 'block';
+        }
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            errorMessage.classList.add('fade-in');
+        }
+
+        // Hide error message
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+
+        // Show result
+        function showResult(originalUrl, resultUrl) {
+            originalImage.src = originalUrl;
+            processedImage.src = resultUrl;
+            resultSection.style.display = 'block';
+            resultSection.classList.add('fade-in');
+            
+            // Setup download functionality
+            downloadBtn.onclick = function() {
+                const link = document.createElement('a');
+                link.href = resultUrl;
+                link.download = 'watermark-removed.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+            
+            // Scroll to result
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Hide result
+        function hideResult() {
+            resultSection.style.display = 'none';
+        }
+
+        // Reset upload (global function)
+        window.resetUpload = function() {
+            fileInput.value = '';
+            hideResult();
+            hideError();
+            showLoading(false);
+            originalImageData = null;
+            
+            // Scroll back to upload
+            document.getElementById('upload').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

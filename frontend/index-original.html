@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watermark Removal AI - Erase Watermarks Instantly</title>
+  <meta name="description" content="Effortlessly erase watermarks, text, and logos from your photos with our advanced AI. Get 3 free removals per day. Supports JPG, PNG, & WEBP files.">
+  <meta name="keywords" content="watermark remover, remove watermark, ai watermark removal, photo editing, erase logo, free watermark remover, dewatermark">
+  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I remove watermarks from photos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Simply upload your image, and our AI will automatically detect and erase the watermark. For precise control, you can switch to the 'Manual Brush' tab to paint over the area you want to remove. Once processed, you can download the clean image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this tool free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can process up to 3 images per day for free without an account. For higher volumes, batch processing, and access to our API, we offer affordable subscription plans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What file types are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We currently support the most popular image formats: JPG, PNG, and WEBP. We are continuously working to support more formats in the future."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the image quality be reduced?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, our tool is designed to maintain the original quality of your image. The AI intelligently reconstructs the area behind the watermark, resulting in a clean, high-resolution photo without compromising on detail."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my uploaded images secure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. We prioritize your privacy. All uploaded images are processed securely and are automatically deleted from our servers after 24 hours. We never share your images with third parties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work on complex or transparent watermarks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our AI is trained to handle a wide variety of watermarks, including semi-transparent logos, repeating patterns, and text overlays. For extremely challenging cases, the manual brush provides the precision needed for a perfect result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I remove watermarks from multiple images at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Batch processing is a feature available in our Pro plan, allowing you to upload and process multiple images simultaneously to speed up your workflow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool work on mobile devices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, our website is fully responsive and designed to work seamlessly on all modern devices, including smartphones and tablets on both iOS and Android."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if the AI result isn't perfect?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the automatic removal leaves any artifacts, simply use the 'Manual Brush' tool. This allows you to paint over any remaining parts of the watermark for a pixel-perfect finish before reprocessing the image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is using a watermark remover illegal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Using a watermark remover is legal for personal use, such as restoring a photo you own. However, removing a watermark from a copyrighted image without the owner's permission may infringe on their rights. Always ensure you have the legal right to alter an image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer an API for developers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we offer a powerful and easy-to-integrate API for developers and businesses who want to incorporate watermark removal into their own applications or workflows. You can find more details on our API page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an account to use this service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No account is needed for our free service. You can start removing watermarks right away. An account is only required if you choose to upgrade to one of our paid subscription plans."
+      }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

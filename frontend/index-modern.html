@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Watermark Remover - Remove Watermarks in Seconds</title>
+    <meta name="description" content="Free AI Watermark Remover removes unwanted watermarks from images instantly. No signup required. High-quality results in seconds.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .mode-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .mode-tab {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .upload-area {
+            border: 3px dashed #d0d0d0;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s;
+            background: #fafafa;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #e8f2ff;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 1rem 0;
+        }
+
+        .supported-formats {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Loading */
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Result Section */
+        .result-section {
+            display: none;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .comparison-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .before-after-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .download-btn, .try-again-btn {
+            margin: 0.5rem;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .try-again-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: white;
+            margin: 4rem 0;
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Error Messages */
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #c62828;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .upload-section {
+                margin: 1rem 0;
+                padding: 2rem;
+                border-radius: 15px;
+            }
+            
+            .mode-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">🎨 WatermarkRemover.AI</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Free AI Watermark Remover</h1>
+                <p class="subtitle">Effortlessly perfect your images with AI. Remove annoying watermarks without quality loss in seconds. Fast, simple, and effective!</p>
+                <button class="cta-button" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-magic"></i> Remove Watermark Now
+                </button>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="upload-section">
+                <div class="mode-tabs">
+                    <div class="mode-tab active" onclick="setMode('auto')">
+                        <i class="fas fa-wand-magic-sparkles"></i> Automatic Mode
+                    </div>
+                    <div class="mode-tab" onclick="setMode('manual')">
+                        <i class="fas fa-edit"></i> Manual Mode <span style="font-size:0.8em;color:#ff6b6b;">(PRO)</span>
+                    </div>
+                </div>
+
+                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">Drag & drop your image here, or click to browse</div>
+                    <button class="file-button">
+                        <i class="fas fa-folder-open"></i> Choose File
+                    </button>
+                    <div class="supported-formats">
+                        Supports: JPG, PNG, WEBP • Max size: 10MB
+                    </div>
+                    <input type="file" id="fileInput" class="file-input" accept="image/jpeg,image/png,image/webp">
+                </div>
+
+                <div id="loader" class="loader">
+                    <div class="spinner"></div>
+                    <p><strong>AI is working its magic...</strong><br>Please wait while we remove the watermark</p>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+            </div>
+
+            <div id="resultSection" class="result-section">
+                <h2 style="text-align: center; margin-bottom: 2rem;">✨ Watermark Successfully Removed!</h2>
+                <div class="comparison-container">
+                    <img id="resultImage" class="comparison-image">
+                    <img id="originalImage" class="comparison-image" style="position: absolute; top: 0; left: 0;">
+                </div>
+                <div class="download-section">
+                    <button id="downloadBtn" class="download-btn">
+                        <i class="fas fa-download"></i> Download High Quality Image
+                    </button>
+                    <button class="try-again-btn" onclick="resetApp()">
+                        <i class="fas fa-redo"></i> Remove Another Watermark
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section container" id="features">
+            <h2 class="features-title">Why Choose Our AI Watermark Remover?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">Remove watermarks in seconds with our optimized AI algorithms. Process multiple images quickly and efficiently.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="feature-title">High Quality Results</h3>
+                    <p class="feature-description">Maintain original image quality while removing watermarks. Our AI preserves details and textures perfectly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">100% Free & Secure</h3>
+                    <p class="feature-description">No signup required. Your images are processed securely and deleted after 24 hours. Complete privacy guaranteed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="feature-title">Two Powerful Modes</h3>
+                    <p class="feature-description">Automatic mode for quick removal, or manual mode for precise control over complex watermarks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Works Anywhere</h3>
+                    <p class="feature-description">Use on any device - desktop, tablet, or mobile. No downloads or installations required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shapes"></i>
+                    </div>
+                    <h3 class="feature-title">All Watermark Types</h3>
+                    <p class="feature-description">Remove logos, text, signatures, and complex patterns. Handles any shape or size watermark perfectly.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-functions.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoPA_WaSKW18QGvCnNNvXpL_G_kRtk46U",
+            authDomain: "ai-watermark-backend-2024.firebaseapp.com",
+            projectId: "ai-watermark-backend-2024",
+            storageBucket: "ai-watermark-backend-2024.firebasestorage.app",
+            messagingSenderId: "550066139623",
+            appId: "1:550066139623:web:fa14b1be84dbe8a39f4d42"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const functions = getFunctions(app);
+
+        let currentMode = 'auto';
+        let originalImageData = null;
+
+        // Mode switching
+        window.setMode = function(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (mode === 'manual') {
+                alert('Manual mode coming soon in Pro version! 🚀');
+            }
+        };
+
+        // File upload handling
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.querySelector('.upload-area');
+        
+        fileInput.addEventListener('change', handleFileUpload);
+        
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                handleFileUpload({ target: { files } });
+            }
+        });
+
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate file
+            if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+                showError('Please upload a JPG, PNG, or WEBP image.');
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                showError('File size must be less than 10MB.');
+                return;
+            }
+
+            // Show loader
+            showLoader(true);
+            hideError();
+
+            try {
+                // Convert to base64
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const dataUrl = e.target.result;
+                    originalImageData = dataUrl;
+                    const base64Data = dataUrl.split(',')[1];
+                    
+                    await processWithAI(base64Data, file.type);
+                };
+                reader.readAsDataURL(file);
+
+            } catch (error) {
+                showError('Failed to read the file. Please try again.');
+                showLoader(false);
+            }
+        }
+
+        async function processWithAI(base64Data, mimeType) {
+            try {
+                const removeWatermarkCallable = httpsCallable(functions, 'removeWatermarkWithAI');
+                const response = await removeWatermarkCallable({
+                    parts: [
+                        { inlineData: { data: base64Data, mimeType: mimeType } },
+                        { text: 'Remove all watermarks, logos, text, and unwanted elements from this image. Reconstruct the background naturally and maintain high image quality.' }
+                    ]
+                });
+
+                const { data, mimeType: resultMimeType, remainingCredits } = response.data;
+                const resultImageUrl = `data:${resultMimeType};base64,${data}`;
+                
+                showResult(originalImageData, resultImageUrl);
+                
+                // Show remaining credits info
+                if (remainingCredits >= 0) {
+                    console.log(`Free attempts remaining: ${remainingCredits}`);
+                }
+                
+            } catch (error) {
+                console.error('Processing error:', error);
+                let message = 'Failed to process the image. Please try again.';
+                
+                if (error.code === 'functions/permission-denied') {
+                    message = '⚠️ You have used all your free attempts today. Please try again tomorrow or upgrade to Pro!';
+                } else if (error.message && error.message.includes('AI не смог')) {
+                    message = 'The AI could not process this image. Please try with a different image that has clear watermarks.';
+                } else if (error.message) {
+                    message = error.message;
+                }
+                
+                showError(message);
+            } finally {
+                showLoader(false);
+            }
+        }
+
+        function showLoader(show) {
+            document.getElementById('loader').style.display = show ? 'block' : 'none';
+            document.querySelector('.upload-area').style.display = show ? 'none' : 'block';
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+            errorEl.classList.add('fade-in');
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function showResult(originalUrl, resultUrl) {
+            document.getElementById('originalImage').src = originalUrl;
+            document.getElementById('resultImage').src = resultUrl;
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('resultSection').classList.add('fade-in');
+            
+            // Setup download
+            document.getElementById('downloadBtn').onclick = function() {
+                const link = document.createElement('a');
+                link.href = resultUrl;
+                link.download = 'watermark-removed-image.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+            
+            // Scroll to result
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.resetApp = function() {
+            document.getElementById('resultSection').style.display = 'none';
+            document.querySelector('.upload-area').style.display = 'block';
+            document.getElementById('fileInput').value = '';
+            hideError();
+            originalImageData = null;
+        };
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+        <meta name="description" content="Multi-AI Chat Platform - ChatGPT, Claude, Gemini в одном интерфейсе">
+        <meta property="og:title" content="Multi-AI Chat">
+        <meta property="og:description" content="Доступ ко всем AI моделям в одном месте">
+        <meta property="og:url" content="https://yoursite.com">
+        <link rel="stylesheet" href="/assets/css/style.css?v=1.0.2">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+        <link rel="manifest" href="/assets/img/site.webmanifest">
+        <!-- Free Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <!-- Font Awesome Kit удален из-за устаревшего токена -->
+        <script src="/assets/js/chat.js?v=1.0.5" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/markdown-it@latest/dist/markdown-it.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/base16/dracula.min.css">
+        <script>
+            const user_image        = `<img src="/assets/img/user.png" alt="User Avatar">`;
+            const gpt_image         = `<img src="/assets/img/gpt.png" alt="GPT Avatar">`;
+        </script>
+        <style>
+            .hljs {
+                color: #e9e9f4;
+                background: #28293629;
+                border-radius: var(--border-radius-1);
+                border: 1px solid var(--blur-border);
+                font-size: 15px;
+            }
+
+            #message-input {
+                margin-right: 30px;
+                height: 80px;
+            }
+
+            #message-input::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            /* Track */
+            #message-input::-webkit-scrollbar-track {
+                background: #f1f1f1; 
+            }
+            
+            /* Handle */
+            #message-input::-webkit-scrollbar-thumb {
+                background: #c7a2ff; 
+            }
+
+            /* Handle on hover */
+            #message-input::-webkit-scrollbar-thumb:hover {
+                background: #8b3dff; 
+            }
+        </style>
+        <script src="/assets/js/highlight.min.js"></script>
+        <script src="/assets/js/highlightjs-copy.min.js"></script>
+        <script>window.conversation_id = `{{chat_id}}`</script>
+        <title>Multi-AI Chat Platform</title>
+    </head>
+    <body>
+        <div class="gradient"></div>
+        <div class="row">
+            <div class="box conversations">
+                <div class="top">
+                    <button class="new_convo" onclick="new_conversation()">
+                        <i class="fa-regular fa-plus"></i>
+                        <span>New Chat</span>
+                    </button>
+                    <div class="spinner"></div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="nav-buttons">
+                    <button class="nav-btn" onclick="searchInChat()">
+                        <i class="fa-regular fa-search"></i>
+                        <span>Search</span>
+                    </button>
+                    
+                    <button class="nav-btn" onclick="showHistory()">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>History</span>
+                    </button>
+                    
+                    <button class="nav-btn subscribe-btn" onclick="showSubscription()">
+                        <i class="fa-regular fa-star"></i>
+                        <span>Subscribe</span>
+                    </button>
+                </div>
+                
+                <!-- Auth Buttons -->
+                <div class="auth-buttons">
+                    <button class="auth-btn signin-btn" onclick="signIn()">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Sign In</span>
+                    </button>
+                    
+                    <button class="auth-btn signup-btn" onclick="signUp()">
+                        <i class="fa-regular fa-user-plus"></i>
+                        <span>Sign Up</span>
+                    </button>
+                </div>
+                
+                <div class="bottom_buttons">
+                    <button onclick="delete_conversations()">
+                        <i class="fa-regular fa-trash"></i>
+                        <span>Clear History</span>
+                    </button>
+                </div>
+            </div>
+            <div class="conversation disable-scrollbars">
+                <div class="stop_generating stop_generating-hidden">
+                    <button id="cancelButton">
+                        <span>Stop Generating</span>
+                        <i class="fa-regular fa-stop"></i>
+                    </button>
+                </div>
+                <div class="box" id="messages">
+                </div>
+                <div class="user-input">
+                    <div class="modern-input-container">
+                        <div class="input-wrapper">
+                            <div class="placeholder-container">
+                                <span class="floating-placeholder" id="floating-placeholder">Ask your question to AI model...</span>
+                            </div>
+                            <textarea 
+                                id="message-input" 
+                                placeholder="" 
+                                cols="30" 
+                                rows="1" 
+                                style="white-space: pre-wrap;" 
+                                oninput="handleInputChange(this)"
+                                onfocus="handleInputFocus()"
+                                onblur="handleInputBlur()"
+                                maxlength="4000">
+                            </textarea>
+                            
+                            <!-- Input Controls -->
+                            <div class="input-actions" id="input-actions">
+                                <button id="file-upload-btn" class="action-button" title="Upload files">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <input type="file" id="file-input" multiple accept="*/*" style="display: none;" onchange="handleFileSelect(event)">
+                                
+                                <button id="voice-input-btn" class="action-button" title="Voice input">
+                                    <i class="fas fa-microphone" id="voice-icon"></i>
+                                </button>
+                                
+                                <!-- Uploaded Files - right beside buttons -->
+                                <div id="uploaded-files" class="uploaded-files"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Smart Suggestions -->
+                        <div class="smart-suggestions" id="smart-suggestions">
+                            <!-- Автокомплит будет добавляться динамически -->
+                        </div>
+                        
+                        <!-- Input Status Bar -->
+                        <div class="input-status-bar" id="input-status-bar">
+                            <div class="character-count" id="character-count">0 / 4000</div>
+                            <div class="input-hints" id="input-hints">
+                                <span class="hint">Enter to send</span>
+                                <span class="hint">Shift+Enter for new line</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Drag & Drop Zone -->
+                    <div id="drop-zone" class="drop-zone">
+                        <div class="drop-zone-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag files here or <span class="drop-zone-click">click to select</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <div class="field">
+                        <input type="checkbox" id="switch"/>
+                        <label for="switch"></label>
+                        <span class="about">Web Access</span>
+                    </div>
+                    
+                    <!-- Режимы работы -->
+                    <div class="field">
+                        <select name="mode" id="chat-mode" onchange="changeChatMode(this.value)">
+                            <option value="balanced">🎯 Balanced</option>
+                            <option value="creative">🎨 Creative</option>
+                            <option value="precise">🎯 Precise</option>
+                        </select>
+                        <span class="about mode-description" id="mode-description">Optimal responses</span>
+                    </div>
+                    <div class="field">
+                        <select name="model" id="model">
+                            <!-- 🌟 Google Gemini Models Only -->
+                            <option value="gemini-2.0-flash" selected>Gemini 2.0 Flash</option>
+                            <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+                            <option value="gemini-flash-latest">Gemini Flash Latest</option>
+                            <option value="gemini-pro-latest">Gemini Pro Latest</option>
+                        </select>
+                        <!-- <span class="about">Model</span> -->
+                    </div>
+                    <div class="field">
+                        <select name="jailbreak" id="jailbreak">
+                            <option value="default" selected>Standard</option>
+                            <option value="creative">Creative Mode</option>
+                            <option value="precise">Precise Mode</option>
+                            <option value="balanced">Balanced Mode</option>
+                        </select>
+                    </div>
+
+                <form class="color-picker" action="">
+                    <fieldset>
+                        <legend class="visually-hidden">Pick a color scheme</legend>
+                        <label for="light" class="visually-hidden">Light</label>
+                        <input type="radio" title="light" name="theme" id="light" checked>
+                    
+                        <label for="dark" class="visually-hidden">Dark theme</label>
+                        <input type="radio" title="dark" id="dark" name="theme">
+                    </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-sidebar">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </body>
+</html>
