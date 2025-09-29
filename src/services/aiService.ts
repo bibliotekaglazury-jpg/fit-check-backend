@@ -1,6 +1,15 @@
 import { GoogleGenAI, GenerateContentResponse, Modality } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+// Debug: Check if API key exists
+if (!process.env.GEMINI_API_KEY) {
+    throw new Error('GEMINI_API_KEY environment variable is not set');
+}
+
+console.log('Initializing Google GenAI with API key:', process.env.GEMINI_API_KEY.substring(0, 10) + '...');
+
+const ai = new GoogleGenAI({ 
+    apiKey: process.env.GEMINI_API_KEY
+});
 const model = 'gemini-2.5-flash-image-preview';
 const videoModel = 'veo-3.0-generate-001';
 
