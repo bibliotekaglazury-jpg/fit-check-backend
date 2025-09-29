@@ -285,28 +285,55 @@ const getVideoTemplate = (templateId: string) => {
 };
 
 export const startVideoGeneration = async (imageUrl: string, templateId: string = 'runway-walk'): Promise<any> => {
-    // TODO: Implement video generation with direct API calls
-    // For now, return a mock operation ID
-    return {
-        name: 'operations/video-' + Date.now(),
-        metadata: {
-            '@type': 'type.googleapis.com/google.ai.generativelanguage.v1beta.CreateVideoRequest',
-            progress: 0
+    const { data: imageBytes, mimeType } = dataUrlToParts(imageUrl);
+    const template = getVideoTemplate(templateId);
+    
+    const url = `${GEMINI_API_URL}/models/veo-3.0-generate-001:generateVideos?key=${GEMINI_API_KEY}`;
+    
+    const payload = {
+        prompt: template.prompt,
+        image: {
+            imageBytes: imageBytes,
+            mimeType: mimeType
+        },
+        config: {
+            numberOfVideos: 1,
+            aspectRatio: '9:16' // Vertical format for Instagram
         }
     };
+    
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Video generation API error: ${response.status} - ${errorText}`);
+    }
+    
+    const result = await response.json();
+    return result;
 };
 
 export const checkVideoGenerationStatus = async (operation: any): Promise<any> => {
-    // TODO: Implement video status checking with direct API calls
-    // For now, return completed status
-    return {
-        name: operation.name,
-        done: true,
-        response: {
-            '@type': 'type.googleapis.com/google.ai.generativelanguage.v1beta.GenerateVideoResponse',
-            generatedVideo: {
-                videoUri: 'https://example.com/placeholder-video.mp4'
-            }
+    const url = `${GEMINI_API_URL}/operations/${operation.name}?key=${GEMINI_API_KEY}`;
+    
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
         }
-    };
+    });
+    
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Video status API error: ${response.status} - ${errorText}`);
+    }
+    
+    const result = await response.json();
+    return result;
 };
