@@ -192,3 +192,60 @@ Generate ONLY the caption text, without any introductory phrases like "Here's th
     
     return postCopy;
 };
+
+// Утилиты для видео
+const dataUrlToParts = (dataUrl: string) => {
+    const arr = dataUrl.split(',');
+    if (arr.length < 2) throw new Error("Invalid data URL");
+    const mimeMatch = arr[0].match(/:(.*?);/);
+    if (!mimeMatch || !mimeMatch[1]) throw new Error("Could not parse MIME type from data URL");
+    return { mimeType: mimeMatch[1], data: arr[1] };
+};
+
+// Видео шаблоны (упрощенная версия)
+const getVideoTemplate = (templateId: string) => {
+    const templates: Record<string, any> = {
+        'runway-walk': {
+            prompt: 'Create a smooth runway walk animation with the model walking confidently towards the camera',
+            duration: 3,
+            motionStrength: 'medium'
+        },
+        'pose-variation': {
+            prompt: 'Create a subtle pose variation with gentle movement and camera zoom',
+            duration: 2,
+            motionStrength: 'low'
+        },
+        'fashion-showcase': {
+            prompt: 'Create a fashion showcase animation with outfit details highlighted',
+            duration: 4,
+            motionStrength: 'high'
+        }
+    };
+    return templates[templateId] || templates['runway-walk'];
+};
+
+export const startVideoGeneration = async (imageUrl: string, templateId: string = 'runway-walk'): Promise<any> => {
+    const { data: imageBytes, mimeType } = dataUrlToParts(imageUrl);
+    const template = getVideoTemplate(templateId);
+    
+    const operation = await ai.models.generateVideos({
+        model: videoModel,
+        prompt: template.prompt,
+        image: { imageBytes: Buffer.from(imageBytes, 'base64'), mimeType },
+        config: { 
+            numberOfVideos: 1,
+            videoLength: template.duration,
+            aspectRatio: '9:16', // Vertical Instagram format
+            motionStrength: template.motionStrength,
+            quality: 'premium',
+            cropMode: 'smart',
+            scaleMode: 'fill'
+        }
+    });
+    
+    return operation;
+};
+
+export const checkVideoGenerationStatus = async (operation: any): Promise<any> => {
+    return await ai.operations.getVideosOperation({ operation });
+};

@@ -177,13 +177,33 @@ export const generatePostCopy = async (req: Request, res: Response): Promise<voi
     }
 };
 
-// Заглушки для видео функций (пока не реализованы)
 export const generateVideo = async (req: Request, res: Response): Promise<void> => {
     try {
-        res.status(501).json({
-            success: false,
-            message: 'Video generation is not implemented yet'
+        const { imageUrl, templateId } = req.body;
+
+        if (!imageUrl) {
+            res.status(400).json({
+                success: false,
+                message: 'Image URL is required'
+            });
+            return;
+        }
+
+        logger.info(`Processing video generation with template: ${templateId || 'runway-walk'}`);
+
+        const operation = await aiService.startVideoGeneration(
+            imageUrl,
+            templateId || 'runway-walk'
+        );
+
+        res.json({
+            success: true,
+            operation: {
+                id: operation.name || Date.now().toString(),
+                status: 'processing'
+            }
         });
+
     } catch (error: any) {
         logger.error('Error in generateVideo:', error);
         res.status(500).json({
@@ -195,10 +215,26 @@ export const generateVideo = async (req: Request, res: Response): Promise<void> 
 
 export const getVideoStatus = async (req: Request, res: Response): Promise<void> => {
     try {
-        res.status(501).json({
-            success: false,
-            message: 'Video status check is not implemented yet'
+        const { id } = req.params;
+
+        if (!id) {
+            res.status(400).json({
+                success: false,
+                message: 'Operation ID is required'
+            });
+            return;
+        }
+
+        logger.info(`Checking video generation status for: ${id}`);
+
+        const operation = { name: id };
+        const status = await aiService.checkVideoGenerationStatus(operation);
+
+        res.json({
+            success: true,
+            operation: status
         });
+
     } catch (error: any) {
         logger.error('Error in getVideoStatus:', error);
         res.status(500).json({
