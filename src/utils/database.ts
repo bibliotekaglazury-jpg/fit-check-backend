@@ -9,11 +9,16 @@ const prisma = new PrismaClient({
 // Функция для безопасного подключения к базе данных
 export const connectDatabase = async (): Promise<void> => {
   try {
+    // Временно отключаем БД для первого деплоя
+    if (!process.env.DATABASE_URL) {
+      console.log('⚠️ DATABASE_URL не найден, пропускаем подключение к БД');
+      return;
+    }
     await prisma.$connect();
     console.log('🔗 Database connected successfully');
   } catch (error) {
     console.error('❌ Failed to connect to database:', error);
-    process.exit(1);
+    console.log('⚠️ Продолжаем без БД...');
   }
 };
 
